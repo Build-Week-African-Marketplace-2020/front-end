@@ -16,7 +16,7 @@ export default function Login() {
     } 
 
     useEffect(() => {
-        axios.post('api', logindata)
+        axios.post('https://africanmarketplacels.herokuapp.com/auth/login', logindata)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     }, [])
