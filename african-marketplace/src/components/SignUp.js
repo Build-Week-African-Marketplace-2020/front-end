@@ -14,7 +14,6 @@ export default function SignUp(props) {
 
     const handleChange = e => {
          setNewUser({...newUser, [e.target.name]: e.target.value})
-        console.log(newUser.username)
     }
 
     const handleSubmit = e => {
@@ -46,7 +45,7 @@ export default function SignUp(props) {
                     placeholder='User Name'
                     id='passwordinput'
                     name='password'
-                    type= 'text'
+                    type= 'password'
                     value={newUser.password}
                     onChange={handleChange}
                 />
