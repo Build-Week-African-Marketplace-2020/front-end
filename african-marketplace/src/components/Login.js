@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
-import {loginInfo} from '../data/data'
 
-export default function Login() {
+export default function Login(props) {
 
-    const [logindata, setLoginData] = usestate(
+    const [logindata, setLoginData] = useState(
         {
             "username": "", 
-            "Password": "", 
+            "password": "", 
         }
     )
     
@@ -15,33 +15,38 @@ export default function Login() {
         return setLoginData({...logindata, [e.target.name]: e.target.value}, )
     } 
 
-    useEffect(() => {
+    
+    const handleSubmit = e => {
+        e.preventDefault();
         axios.post('https://africanmarketplacels.herokuapp.com/auth/login', logindata)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            props.history.push('/african-marketplace')
+        })   
         .catch(err => console.log(err))
-    }, [])
-
+    }
+    
     return (
         <div>
-          <form>
-        <label htmlFor='username'>Username</label>
-           <input 
-            placeholder='User Name'
-            id='usernameinput'
-            name='Username'
-            type= 'text'
-            value=''
-           />
-          </form>
-          <form>
-        <label htmlFor='username'>Password</label>
-           <input 
-            placeholder='User Name'
-            id='passwordinput'
-            name='Password'
-            type= 'text'
-            value=''
-           />
+          <form onSubmit={handleSubmit}>
+            <label>Username</label>
+            <input 
+                placeholder='User Name'
+                id='usernameinput'
+                name='username'
+                type= 'text'
+                value={logindata.username}
+                onChange={handleChange}
+            />
+            <label>Password</label>
+            <input 
+                placeholder='*****'
+                id='passwordinput'
+                name='password'
+                type= 'password'
+                value={logindata.password}
+                onChange={handleChange}
+            />
 
            <button type="submit">Submit</button>
           </form>
