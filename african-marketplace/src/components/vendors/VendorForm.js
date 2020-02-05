@@ -1,47 +1,60 @@
 import { useState, useEffect } from 'react'
 import React from 'react'
+import Select from 'react-select';
 import axios from 'axios'
 
 export default function VendorForm() {
 
     const [item, setItem] = useState(
         {
-            "item": "",
-            "amount": "",
+            "name": "",
+            "location": "",
             "price": "",
         }
     )
     
-    useEffect(() => {
-        axios.post('app', item)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }, [])
+  const handleSubmit = e => {
+    e.preventDefault();
+    axios.post('https://africanmarketplace.herokuapp.com/mp/products', item)
+    .then(res => {
+        console.log(res)
+        props.history.push('/african-marketplace')
+    })
+    .catch(err => console.log(err))    
+}
   
     const handleChange = e => {
         return setItem({...item, [e.target.name]: e.target.value}, )
     }
 
+    const locationOptions = [
+        { value: 'rwanda', label: 'Rwanda' },
+        { value: 'Uganda', label: 'Uganda' },
+        { value: 'kenya', label: 'Kenya' },
+      ];
     
     return (
         <div>
         <form onSubmit={handleSubmit}>
-            <label htmlFor='item'>Add Items</label>
+            <label htmlFor='name'>Add Items</label>
                 <input 
                     placeholder='Add items'
-                    id='iteminput'
-                    name='item'
+                    id='nameinput'
+                    name='name'
                     type= 'text'
                     value={item.name}
                     onChange={handleChange}
                     />
-           <label htmlFor='amount'>Amount</label>
+           <label htmlFor='location'>
+           Location
+           <Select options={ locationOptions } />
+           </label>
                 <input 
-                    placeholder='User Name'
-                    id='amountinput'
-                    name='amount'
+                    placeholder='Location'
+                    id='locationinput'
+                    name='location'
                     type= 'text'
-                    value= {item.amount}
+                    value= {item.location}
                     onChange={handleChange}
                     />
            <label htmlFor='price'>Set Price</label>
@@ -50,7 +63,7 @@ export default function VendorForm() {
                     id='priceinput'
                     name='price'
                     type= 'text'
-                    value= {item.amount}
+                    value= {item.price}
                     onChange={handleChange}
                     />
         <button type="submit">Submit</button>
@@ -58,3 +71,6 @@ export default function VendorForm() {
         </div>
 )
 }
+
+
+
