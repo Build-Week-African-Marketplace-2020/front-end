@@ -33,6 +33,7 @@ export default function VendorForm() {
         { value: 'kenya', label: 'Kenya' },
       ];
     
+
     return (
         <div>
         <form onSubmit={handleSubmit}>
@@ -66,7 +67,9 @@ export default function VendorForm() {
                     value= {item.price}
                     onChange={handleChange}
                     />
+                    
         <button type="submit">Submit</button>
+        
         </form>
         </div>
 )
