@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {loginInfo} from '../data/data'
 
 export default function Login() {
 
-    const [logindata, setLoginData] = usestate(
+    const [logindata, setLoginData] = useState(
         {
             "username": "", 
             "Password": "", 

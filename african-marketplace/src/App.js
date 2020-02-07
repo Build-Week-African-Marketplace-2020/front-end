@@ -16,7 +16,10 @@ function App() {
       <Route path='/login' component={Login} />
       <Route path='/african-marketplace' component={Nav} />
       <Route exact path='/african-marketplace' component={Dashboard} />
-      <Route path='/african-marketplace/sell' component={VendorForm} />
+      <Route path='/african-marketplace/sell' render={props => {
+        return <VendorForm {...props}/> 
+      }
+      }/>
     </div>
   );
 }
