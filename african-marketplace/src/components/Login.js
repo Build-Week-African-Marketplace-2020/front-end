@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import {loginInfo} from '../data/data'
+// import {loginInfo} from '../data/data'
 
 export default function Login() {
 
@@ -23,7 +23,7 @@ export default function Login() {
 
     return (
         <div>
-          <form>
+          <form onSubmit={handleChange}>
         <label htmlFor='username'>Username</label>
            <input 
             placeholder='User Name'
