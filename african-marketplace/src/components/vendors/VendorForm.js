@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import Select from 'react-select';
 import axios from 'axios'
 
-export default function VendorForm() {
+export default function VendorForm(props) {
 
     const [item, setItem] = useState(
         {
@@ -67,7 +67,7 @@ export default function VendorForm() {
                     value= {item.price}
                     onChange={handleChange}
                     />
-                    
+
         <button type="submit">Submit</button>
         
         </form>
